@@ -1,2 +1,18 @@
 ---
 # defaults file for ansible-es
+
+# Java and Elasticsearch version to install:
+#   - CHeck https://www.elastic.co/support/matrix#matrix_jvm
+#     for Java version compatibility
+es_version: "6.8.23"
+es_java_deb_package: openjdk-11-jre-headless
+es_java_rpm_package: java-11-openjdk
+
+es_download_url: https://artifacts.elastic.co/downloads/elasticsearch
+
+# elasticsearch.yml
+es_path_data: /var/lib/elasticsearch
+es_path_logs: /var/log/elasticsearch
+
+# jvm.options
+es_heap_size: 1g

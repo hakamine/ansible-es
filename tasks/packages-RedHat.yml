@@ -1,0 +1,16 @@
+- name: Install openJDK (RedHat)
+  ansible.builtin.dnf:
+    name: "{{ es_java_rpm_package }}"
+
+# - Disabled GPG check when installing ES (RHEL 9)
+#   (ref. https://github.com/elastic/elasticsearch/issues/89487)
+# - Right after installing the ES RPM, the elasticsearch
+#   systemd service fails to start with a "keystore format too new error"
+#   However after doing a daemon-reload and restart it works
+
+- name: Install elasticsearch 6.8 RPM
+  ansible.builtin.dnf:
+    name: "{{ es_download_url }}/elasticsearch-{{ es_version }}.rpm"
+    disable_gpg_check: true
+  notify:
+    - Restart systemd elasticsearch service (with daemon-reload)
