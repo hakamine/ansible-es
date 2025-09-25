@@ -16,3 +16,38 @@ es_path_logs: /var/log/elasticsearch
 
 # jvm.options
 es_heap_size: 1g
+
+# es_cluster_name:
+#   - variable for elasticsearch.yml
+#   - optional (define in host_vars if needed)
+
+# es_bootstrap_memory_lock
+#   - variable for elasticsearch.yml
+#   - optional (define in host_vars if needed)
+
+# es_network_host
+#   - variable for elasticsearch.yml
+#   - optional (define in host_vars if needed)
+
+# es_http_max_content_length
+#   - variable for elasticsearch.yml
+#   - optional (define in host_vars if needed)
+
+##################################################
+# Repository configuration (for snapshots)
+##################################################
+# If ES sanpshot repositories are to be used, define
+# BOTH es_path_repo and es_snapshot_repository variables
+
+# es_path_repo:
+#   - variable for elasticsearch.yml (path.repo)
+#   - Example:
+#     es_path_repo: ["/mount/es_backups"]
+
+# es_snapshot_repository:
+#   - name and location of ES repository to be registered
+#   - Specify location as an absolute path
+#   - Example:
+#     es_snapshot_repository:
+#       name: atom_replication
+#       location: /mount/es_backups/atom_replication_snap_repo

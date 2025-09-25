@@ -43,3 +43,37 @@
         mode: "0644"
       notify:
         - Restart systemd elasticsearch service (with daemon-reload)
+
+# Configure snapshot repositories if defined
+- name: Configure snapshot repositories block
+  block:
+    - name: Ensure directory to hold repository exists
+      file:
+        path: "{{ es_snapshot_repository.location }}"
+        state: directory
+        mode: "0755"
+        owner: elasticsearch
+        group: elasticsearch
+
+    - name: Flush to restart elasticsearch if there were config changes
+      meta: "flush_handlers"
+
+    - name: Wait until elasticsearch service is up
+      ansible.builtin.wait_for:
+        port: 9200
+        timeout: 120
+
+    - name: Register ES repository
+      uri:
+        url: "http://127.0.0.1:9200/_snapshot/{{ es_snapshot_repository.name }}"
+        method: PUT
+        body:
+          type: fs
+          settings:
+            location: "{{ es_snapshot_repository.location }}"
+        body_format: json
+
+  when:
+    - es_path_repo is defined
+    - es_snapshot_repository is defined
+  tags: es-repo
