@@ -39,6 +39,13 @@ path.data: {{ es_path_data }}
 # Path to log files:
 #
 path.logs: {{ es_path_logs }}
+
+{% if es_path_repo is defined %}
+#
+# Path to snapshot repositories
+#
+path.repo: {{ es_path_repo }}
+{% endif %}
 #
 # ----------------------------------- Memory -----------------------------------
 #
