@@ -1,6 +1,7 @@
 - name: Install openJDK (Debian)
   ansible.builtin.apt:
     name: "{{ es_java_deb_package }}"
+    update_cache: true
 
 - name: Install Elasticsearch package (Debian)
   ansible.builtin.apt:

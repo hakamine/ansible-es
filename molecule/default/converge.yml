@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: molecule
+  gather_facts: true
+  tasks:
+    - name: Include the collection component
+      include_role:
+        name: hakamine.es

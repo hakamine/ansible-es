@@ -1,0 +1,14 @@
+---
+all:
+  children:
+    molecule:
+      hosts:
+        molecule-ub24:
+          ansible_connection: containers.podman.podman
+          container_image: geerlingguy/docker-ubuntu2404-ansible
+          container_volumes:
+            - /sys/fs/cgroup:/sys/fs/cgroup:ro
+          container_capabilities:
+            - SYS_ADMIN
+
+            
