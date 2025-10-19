@@ -5,7 +5,7 @@ all:
       hosts:
         molecule-ub24:
           ansible_connection: containers.podman.podman
-          container_image: geerlingguy/docker-ubuntu2404-ansible
+          container_image: hakamine/docker-ubuntu2404-ansible:pr-7
           container_volumes:
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
           container_capabilities:

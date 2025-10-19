@@ -9,7 +9,7 @@
         name: "{{ item }}"
         image: "{{ hostvars[item]['container_image'] }}"
         tmpfs: "{{ hostvars[item]['container_tmpfs'] | default(omit) }}"
-        command: "{{ hostvars[item]['container_command'] | default('sleep 1d') }}"
+        command: "{{ hostvars[item]['container_command'] | default(omit) }}"
         privileged: "{{ hostvars[item]['container_privileged'] | default(false) }}"
         volumes: "{{ hostvars[item]['container_volumes'] | default(omit) }}"
         capabilities: "{{ hostvars[item]['container_capabilities'] | default(omit) }}"
